@@ -3,20 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donations Banned - Clear Message</title>
+    <title>Donations Banned - Clean Text</title>
     <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Define a clean, easily readable font stack */
-        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap');
-    </style>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        'clean': ['"Roboto Mono"', 'monospace', 'sans-serif'],
-                    },
                     colors: {
                         'ronin-red': '#cc0000',
                         'dark-void': '#0c0c1e',
@@ -26,25 +19,28 @@
         }
     </script>
 </head>
-<body class="bg-dark-void min-h-screen flex items-center justify-center p-4 font-clean">
+<body class="bg-dark-void min-h-screen flex items-center justify-center p-4 font-sans">
 
     <!-- Simple, centered text block with proper spacing and high contrast -->
     <div class="text-center p-8 sm:p-12 md:p-16 rounded-xl shadow-2xl bg-black border-4 border-ronin-red max-w-4xl w-full">
         
-        <p class="text-white text-3xl sm:text-4xl md:text-5xl tracking-normal leading-tight mb-4">
+        <!-- Line 1: Clear, standard spacing -->
+        <p class="text-white text-3xl sm:text-4xl md:text-5xl tracking-normal leading-normal mb-6 font-medium">
             SORRY, RONIN REALM DONATED
         </p>
         
-        <p class="text-yellow-400 text-4xl sm:text-5xl md:text-6xl tracking-normal leading-tight mb-8 font-extrabold">
+        <!-- Line 2: Clear, standard spacing -->
+        <p class="text-yellow-400 text-4xl sm:text-5xl md:text-6xl tracking-normal leading-normal mb-10 font-bold">
             TOO MUCH MONEY.
         </p>
 
-        <p class="text-ronin-red text-5xl sm:text-6xl md:text-7xl tracking-normal leading-tight font-extrabold">
+        <!-- Line 3: The primary message, using a clean font -->
+        <p class="text-ronin-red text-5xl sm:text-6xl md:text-7xl tracking-normal leading-normal font-extrabold">
             DONATIONS ARE BANNED NOW!
         </p>
         
-        <p class="text-gray-500 mt-10 text-lg">
-            (Please, no more. Our infrastructure can't handle this level of generosity.)
+        <p class="text-gray-500 mt-12 text-lg">
+            (Our infrastructure can't handle this level of generosity.)
         </p>
 
     </div>
