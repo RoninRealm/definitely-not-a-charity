@@ -3,98 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donations Banned - Canvas Animation</title>
+    <title>Donations Banned - Clear Message</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background-color: #1a1a1a; /* Very dark background */
-        }
-        canvas {
-            border: 6px solid #ff0000; /* Intense red border */
-            background-color: #000000;
-            box-shadow: 0 0 25px rgba(255, 0, 0, 0.7); /* Strong red glow */
-            display: block;
-        }
+        /* Define a clean, easily readable font stack */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap');
     </style>
-</head>
-<body>
-
-    <canvas id="warningCanvas" width="900" height="450"></canvas>
-
     <script>
-        const canvas = document.getElementById('warningCanvas');
-        const ctx = canvas.getContext('2d');
-
-        // Text content
-        const line1 = "SORRY, RONIN REALM DONATED";
-        const line2 = "TOO MUCH MONEY.";
-        const line3 = "DONATIONS ARE BANNED NOW.";
-
-        let frameCount = 0;
-
-        function animate() {
-            // Increment frame counter for animation logic
-            frameCount++;
-
-            // 1. Clear the canvas
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            // 2. Set general text properties
-            ctx.textAlign = 'center';
-            ctx.shadowColor = 'rgba(255, 255, 255, 0.5)';
-            ctx.shadowBlur = 5;
-
-            // --- Draw Line 1 (Static) ---
-            ctx.font = 'bold 48px Inter, sans-serif';
-            ctx.fillStyle = '#fefefe';
-            ctx.fillText(line1, canvas.width / 2, 120);
-
-            // --- Draw Line 2 (Static) ---
-            ctx.font = 'bold 56px Inter, sans-serif';
-            ctx.fillStyle = '#fff000'; // Yellow
-            ctx.fillText(line2, canvas.width / 2, 210);
-
-
-            // --- Draw Line 3 (Pulsing Animation) ---
-            // Use Math.sin for a smooth, cyclical opacity change (pulsing)
-            const pulse = (Math.sin(frameCount * 0.05) + 1) / 2; // Value between 0 and 1
-            
-            // Calculate a color mix between red (R) and yellow (Y) based on the pulse
-            const red = 255;
-            const green = Math.floor(255 * pulse);
-            const blue = 0;
-            const dynamicColor = `rgb(${red}, ${green}, ${blue})`;
-
-            // Make the shadow glow intensity change
-            ctx.shadowColor = dynamicColor;
-            ctx.shadowBlur = 10 + (pulse * 15); // Glow pulses between 10 and 25
-
-            ctx.font = 'bold 72px Impact, sans-serif';
-            ctx.fillStyle = dynamicColor;
-            
-            // Add a slight scaling effect for more punch
-            const scaleFactor = 1 + (pulse * 0.01); 
-            ctx.save();
-            ctx.translate(canvas.width / 2, 330);
-            ctx.scale(scaleFactor, scaleFactor);
-            
-            ctx.fillText(line3, 0, 0);
-
-            ctx.restore(); // Restore context state
-
-            // 3. Request the next frame to continue the animation loop
-            requestAnimationFrame(animate);
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'clean': ['"Roboto Mono"', 'monospace', 'sans-serif'],
+                    },
+                    colors: {
+                        'ronin-red': '#cc0000',
+                        'dark-void': '#0c0c1e',
+                    }
+                }
+            }
         }
-
-        // Start the animation loop when the window is loaded
-        window.onload = function() {
-            animate();
-        };
-
     </script>
+</head>
+<body class="bg-dark-void min-h-screen flex items-center justify-center p-4 font-clean">
+
+    <!-- Simple, centered text block with proper spacing and high contrast -->
+    <div class="text-center p-8 sm:p-12 md:p-16 rounded-xl shadow-2xl bg-black border-4 border-ronin-red max-w-4xl w-full">
+        
+        <p class="text-white text-3xl sm:text-4xl md:text-5xl tracking-normal leading-tight mb-4">
+            SORRY, RONIN REALM DONATED
+        </p>
+        
+        <p class="text-yellow-400 text-4xl sm:text-5xl md:text-6xl tracking-normal leading-tight mb-8 font-extrabold">
+            TOO MUCH MONEY.
+        </p>
+
+        <p class="text-ronin-red text-5xl sm:text-6xl md:text-7xl tracking-normal leading-tight font-extrabold">
+            DONATIONS ARE BANNED NOW!
+        </p>
+        
+        <p class="text-gray-500 mt-10 text-lg">
+            (Please, no more. Our infrastructure can't handle this level of generosity.)
+        </p>
+
+    </div>
+
 </body>
 </html>
